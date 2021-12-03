@@ -51,7 +51,7 @@
 			font-weight:200;
 			line-height:1.3;
     }
-    h3{
+    h3, li{
       color: #e9c46a;
       font-family: 'Zen Kurenaido', sans-serif;
       font-size:30px;
@@ -64,6 +64,11 @@
       width: 900px;
       height: 600px;
     }
+
+    ul{
+      list-style-type: none;
+    }
+
 
     .img_text{
       position: absolute;
@@ -81,6 +86,10 @@
       opacity:0;
       transition: opacity 0.8s;
       -webkit-transition: opacity 0.8s;
+    }
+
+    .list{
+      text-align:center;
     }
 
     #map{
@@ -110,9 +119,15 @@
       transition: opacity 0.8s;
        -webkit-transition: opacity 0.8s;
     }
+    #qlist{
+      transition: opacity 0.8s;
+       -webkit-transition: opacity 0.8s;
+    }
+
     #finaltext{
       text-align:center;
     }
+
     .spacer{
       margin-bottom: 200px;
       margin-top: 200px;
@@ -133,12 +148,12 @@
 	</style>
 </head>
 
+
 <body>
   <main role="main" class="container" >
-
     <div id= 'trigger1'></div>
     <div id = 'img1' class="img_container">
-      <img class="img" src= "family.jpg" width= 100%; />
+      <img class="img" src= "familyoutline.png" width= 100%; opacity = 75%; />
     </div>
 
     <div class='row', id='header'>
@@ -157,10 +172,16 @@
 
         <br><br>
         <div id='trigger3'></div>
-          <p id="text1"> Here we may have a denser introduction to the topic, explaining the importance of the question and what kinds of differences we can expect migrants to face.</p>
-
+        <div class='list' id='qlist'>
+          <ul id= 'pin3'>
+            <li id="list1" class= 'active list_elt'>How much does the migration cost?</li>
+            <li id="list2" class= ' list_elt'>What violence do they face along the way?</li>
+            <li id="list3" class= 'list_elt'>With whom do they travel?</h3>
+            <li id="list4" class= 'list_elt'>What work do they find when they arrive?</li>
+            <li id="list5" class=  'list_elt'>How much do they send to their families back home?</li>
+          </ul>
+        </div>
         <br><br>
-
       </div>
     </div>
 
@@ -174,7 +195,7 @@
       </div>
 
       <div class = 'col-4'>
-          <div id = 'pin3'>
+          <div id = 'pin4'>
             <div id = 'text2'>
               <p> Here we have a two-column layout. On the left we can place our dynamic visualization, while on the right we can explain the key takeaways from the data.</p>
               <br>
@@ -213,6 +234,7 @@
       .setPin('#img1')
       .addTo(controller);
 
+    //fade out img1
     new ScrollMagic.Scene({
           triggerElement: '#trigger2',
           triggerHook: 0.1,
@@ -220,15 +242,17 @@
           .setClassToggle('#img1', 'deactive')
           .addTo(controller);
 
+    //pin text 2
     new ScrollMagic.Scene({
         triggerElement: '#trigger2',
         triggerHook: 0.1,
-        duration: 500,
+        duration: 750,
         pushFollowers: false
       })
         .setPin('#pin2')
         .addTo(controller);
 
+    // text 2 fade out
     new ScrollMagic.Scene({
       triggerElement: '#trigger3',
       triggerHook: 0.9
@@ -236,12 +260,22 @@
       .setClassToggle('#pin2', 'deactive')
       .addTo(controller);
 
+    //pin list of questions
+    new ScrollMagic.Scene({
+      triggerElement: '#trigger3',
+      triggerHook: 0.1,
+      duration: 1000
+    })
+      .setPin('#pin3')
+      .addTo(controller);
+
+
+    //fade out questions list
     new ScrollMagic.Scene({
       triggerElement: '#trigger4',
-      triggerHook: 0,
-      duration: 450
+      triggerHook: 0.9
     })
-    .setPin('#img2')
+    .setClassToggle('#qlist', 'deactive')
     .addTo(controller);
 
     new ScrollMagic.Scene({
